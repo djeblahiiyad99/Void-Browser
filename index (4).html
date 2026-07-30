@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل متصفح Void - المتصفح الأسرع والأكثر أماناً</title>
+    <!-- أيقونة التبويب الدائرية باستخدام SVG عالي الجودة -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23120826'/><circle cx='50' cy='50' r='40' fill='none' stroke='%238b5cf6' stroke-width='4'/><circle cx='50' cy='50' r='15' fill='%23000'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0614;
+            --card-bg: #150d24;
+            --accent-purple: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* رأس الصفحة */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(11, 6, 20, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area svg, .logo-area img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .logo-area span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #fff, var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            padding: 180px 8% 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .hero-logo-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            box-shadow: 0 0 40px var(--accent-glow);
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b0614;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: var(--accent-purple);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            color: white;
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px var(--accent-glow);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .version-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* مميزات المتصفح */
+        .features {
+            padding: 80px 8%;
+            background: rgba(21, 13, 36, 0.4);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        .section-title span {
+            color: var(--accent-purple);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* تفاصيل تقنية إضافية */
+        .specs-section {
+            padding: 80px 8%;
+        }
+
+        .specs-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .spec-item h4 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .spec-item p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-purple);
+        }
+
+        /* التذييل */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #07040d;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        footer span {
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="logo-area">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="45" height="45">
+                <circle cx="50" cy="50" r="50" fill="#120826" stroke="#8b5cf6" stroke-width="3"/>
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#c084fc" stroke-width="2" stroke-dasharray="10 5"/>
+                <circle cx="50" cy="50" r="15" fill="#000"/>
+            </svg>
+            <span>VOID</span>
+        </div>
+        <nav>
+            <a href="#features">المميزات</a>
+            <a href="#specs">المواصفات</a>
+            <a href="https://download1530.mediafire.com/7tz4e058z26gZU9iO5hoGv3AXOMh47vpTibi4ocvwTB3oBCDdUlJ1cPNKDUcWbK5n8kdBEBM63DevOfvkWKEZR0KQ1FVFdEe00-mc4sAf1DoC9KssU9Dkt7PrpTQv3IUD7rpxBarDlY0OieJl1CBip68oI9T7Zxvjocguk99X6I2O6g/ttrtanaxrp7cbat/Void+Browser+Setup+1.0.0.exe" target="_blank">تحميل الآن</a>
+        </nav>
+    </header>
+
+    <!-- الواجهة الرئيسية -->
+    <section class="hero">
+        <div class="hero-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+                <defs>
+                    <radialGradient id="spaceBg" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#1a0b2e" />
+                        <stop offset="70%" stop-color="#0b0614" />
+                        <stop offset="100%" stop-color="#050308" />
+                    </radialGradient>
+                    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#b892ff" />
+                        <stop offset="50%" stop-color="#7c3aed" />
+                        <stop offset="100%" stop-color="#3b0764" />
+                    </linearGradient>
+                    <radialGradient id="vortexGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#000000" />
+                        <stop offset="30%" stop-color="#2e1065" stop-opacity="0.8" />
+                        <stop offset="60%" stop-color="#581c87" stop-opacity="0.5" />
+                        <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="250" cy="250" r="230" fill="url(#spaceBg)" stroke="url(#ringGrad)" stroke-width="6" />
+                <g transform="translate(250,250)">
+                    <circle cx="0" cy="0" r="180" fill="none" stroke="#7c3aed" stroke-width="3" opacity="0.3" stroke-dasharray="20 10"/>
+                    <ellipse cx="0" cy="0" rx="160" ry="140" fill="none" stroke="#a78bfa" stroke-width="4" opacity="0.4" transform="rotate(30)"/>
+                    <ellipse cx="0" cy="0" rx="130" ry="110" fill="none" stroke="#8b5cf6" stroke-width="5" opacity="0.6" transform="rotate(-45)"/>
+                    <path d="M-120,0 C-120,-80 0,-120 80,-80 C150,-40 160,60 100,120 C40,170 -60,140 -100,80" fill="none" stroke="#c4b5fd" stroke-width="3" opacity="0.7"/>
+                    <path d="M120,0 C120,80 0,120 -80,80 C-150,40 -160,-60 -100,-120 C-40,-170 60,-140 100,-80" fill="none" stroke="#9333ea" stroke-width="4" opacity="0.8"/>
+                    <circle cx="0" cy="0" r="75" fill="url(#vortexGlow)"/>
+                    <circle cx="0" cy="0" r="45" fill="#030007"/>
+                </g>
+                <circle cx="120" cy="120" r="2.5" fill="#fff" opacity="0.8"/>
+                <circle cx="380" cy="140" r="2" fill="#d8b4fe" opacity="0.9"/>
+                <circle cx="100" cy="360" r="3" fill="#c084fc" opacity="0.7"/>
+                <circle cx="400" cy="350" r="2" fill="#fff" opacity="0.9"/>
+                <text x="250" y="105" font-family="'Segoe UI', sans-serif" font-weight="900" font-size="34" fill="#ffffff" text-anchor="middle" letter-spacing="8">VOID</text>
+                <text x="250" y="130" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="14" fill="#d8b4fe" text-anchor="middle" letter-spacing="5">BROWSER</text>
+            </svg>
+        </div>
+        <h1>اكتشف الفضاء الرقمي مع متصفح <span>Void</span></h1>
+        <p>متصفح عالي الأداء، مصمم خصيصاً ليمنحك سرعة فائقة تصفح آمن وخالي من الإعلانات المزعجة، مع واجهة مستخدم مذهلة مستوحاة من أعماق الفضاء.</p>
+        
+        <a href="https://download1530.mediafire.com/7tz4e058z26gZU9iO5hoGv3AXOMh47vpTibi4ocvwTB3oBCDdUlJ1cPNKDUcWbK5n8kdBEBM63DevOfvkWKEZR0KQ1FVFdEe00-mc4sAf1DoC9KssU9Dkt7PrpTQv3IUD7rpxBarDlY0OieJl1CBip68oI9T7Zxvjocguk99X6I2O6g/ttrtanaxrp7cbat/Void+Browser+Setup+1.0.0.exe" class="download-btn" target="_blank">
+            <i class="fa-solid fa-download"></i> تحميل المتصفح (نسخة 1.0.0)
+        </a>
+        <div class="version-info">الإصدار: 1.0.0 | متوافق مع Windows (64-bit)</div>
+    </section>
+
+    <!-- مميزات المتصفح -->
+    <section class="features" id="features">
+        <h2 class="section-title">لماذا تختار متصفح <span>Void</span>؟</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>سرعة فائقة</h3>
+                <p>تم تحسين محرك المتصفح لفتح الصفحات في لمح البصر وأقل استهلاك لموارد الجهاز والذاكرة العشوائية (RAM).</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>حماية الخصوصية</h3>
+                <p>نظام دفاعي قوي يمنع تتبع بياناتك ويحجب الإعلانات الخبيثة والملفات الضارة لضمان تصفح آمن تماماً.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>تصميم فضائي أنيق</h3>
+                <p>واجهة داكنة مريحة للعين (Dark Mode) مصممة بعناية فائقة لتناسب عشاق الألعاب والمطورين.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-puzzle-piece"></i>
+                <h3>دعم الإضافات</h3>
+                <p>إمكانية تثبيت مختلف إضافات المتصفحات الشهيرة بكل سهولة لتخصيص تجربتك بالكامل حسب رغبتك.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-feather"></i>
+                <h3>خفيف على النظام</h3>
+                <p>لا يستهلك بطارية حاسوبك المحمول بشكل مفرط، مما يجعله مثالياً للاستخدام الطويل والألعاب.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-sync"></i>
+                <h3>تحديثات مستمرة</h3>
+                <p>فريق تطوير يعمل باستمرار على سد الثغرات وإضافة ميزات جديدة ومبتكرة بشكل دوري.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- معلومات ومواصفات تقنية -->
+    <section class="specs-section" id="specs">
+        <h2 class="section-title">معلومات <span>الملف التقنية</span></h2>
+        <div class="specs-container">
+            <div class="spec-item">
+                <h4>حجم الملف</h4>
+                <p>متوسط الحجم</p>
+            </div>
+            <div class="spec-item">
+                <h4>الأنظمة المدعومة</h4>
+                <p>Windows 10 / 11</p>
+            </div>
+            <div class="spec-item">
+                <h4>نوع الملف</h4>
+                <p>مستقل (EXE Setup)</p>
+            </div>
+            <div class="spec-item">
+                <h4>حالة الأمان</h4>
+                <p>فحص نظيف 100%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل وحفظ الحقوق -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - تم التطوير بواسطة <span>Djeblahi.I</span></p>
+    </footer>
+
+</body>
+</html>
